@@ -1,0 +1,18 @@
+<nav>
+    <span class="left">
+        <a routerLink="home" routerLinkActive="active">Home</a>
+        <a routerLink="info" routerLinkActive="active">Info</a>
+    </span>
+    @if(logIn=='true')
+    {
+      <span class="right">
+        <a class="logout" (click)="logout()" routerLinkActive="active">Logout</a>
+      </span>
+    }
+    @else {
+      <span class="right">
+          <a routerLink="register" routerLinkActive="active">Sign up</a>
+          <a routerLink="login" routerLinkActive="active">Sign in</a>
+      </span>
+    }
+  </nav>

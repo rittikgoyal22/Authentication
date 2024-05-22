@@ -1,0 +1,89 @@
+<div class="box">
+
+    <h1>SIGN UP</h1>
+    <form [formGroup]="regForm" (ngSubmit)="register()">
+        <div class="box-in">
+            <!-- <label for="fname">First Name<span class="required">*</span>: </label> -->
+            <input type="text" id="fname" placeholder="Enter your First Name" formControlName="fname" form-control>
+            @if(regForm.controls['fname'].invalid && regForm.controls['fname'].touched)
+            {
+                @if(regForm.controls['fname'].hasError('required'))
+                {
+                    <div class="err">First Name is Required</div>
+                }
+                @if(regForm.controls['fname'].hasError('minlength'))
+                {
+                <div class="err">Minimum 4 character</div>
+            }
+            @if(regForm.controls['fname'].hasError('maxlength'))
+            {
+                <div class="err">Maximum 10 character</div>
+            }
+        }
+    </div>
+    <div class="box-in">
+        <!-- <label for="lname">Last Name: </label> -->
+        <input type="text" id="lname" placeholder="Enter your Last Name" formControlName="lname">
+    </div>
+    <div class="box-in">
+        <!-- <label for="email">Email ID<span class="required">*</span>: </label> -->
+        <input type="text" id="email" placeholder="Enter your Email ID" formControlName="email">
+        @if(regForm.controls['email'].invalid && regForm.controls['email'].touched)
+        {
+            @if(regForm.controls['email'].hasError('required'))
+            {
+                <div class="err">Email ID is Required</div>
+            }
+            @if(regForm.controls['email'].hasError('email'))
+            {
+                <div class="err">Enter valid Email</div>
+            }
+        }
+    </div>
+    <div class="box-in">        
+        <!-- <label for="pass">Password<span class="required">*</span>: </label> -->
+        <input type="text" id="pass" placeholder="Enter your Password" formControlName="pass">
+        @if(regForm.controls['pass'].invalid && regForm.controls['pass'].touched)
+        {
+            @if(regForm.controls['pass'].hasError('required'))
+            {
+                <div class="err">Password is Required</div>
+            }
+            @if(regForm.controls['pass'].hasError('minlength'))
+            {
+                <div class="err">Minimum 6 character</div>
+            }
+            @if(regForm.controls['pass'].hasError('maxlength'))
+            {
+                <div class="err">Maximum 20 character</div>
+            }
+        }
+    </div>
+    <div class="box-in">
+        <!-- <label for="confpass">Confirm Password<span class="required">*</span>: </label> -->
+        <input type="text" id="confpass" placeholder="Enter your Confirm Password" formControlName="confpass">
+        @if(regForm.controls['confpass'].touched)
+        {
+            @if(regForm.controls['confpass'].hasError('required') && regForm.controls['confpass'].invalid)
+            {
+                <div class="err">Password is Required</div>
+            }
+            @else if(!passnot())
+            {
+                <div class="err">Password do not match</div>
+            }
+        }
+    </div>
+    <div>
+        <input type="submit" value="Register" [disabled]="!regForm.valid || !passnot()">
+    </div>
+</form>
+</div>
+
+@if(done)
+{
+    <div class="errBox">
+        <p>{{msg}}</p>
+        <button (click)="ok()">OK</button>
+    </div>
+}

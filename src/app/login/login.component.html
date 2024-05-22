@@ -1,0 +1,56 @@
+<div class="box">
+    <div>
+        <h1>SIGN IN</h1>
+    </div>
+        <div class="box-i">
+            <form [formGroup]="logForm" (ngSubmit)="login()">
+            <div class="box-in">
+                <!-- <label for="email">Email ID<span class="required">*</span>: </label> -->
+                <input type="text" placeholder="Enter your Email ID" formControlName="email">
+                @if(logForm.controls['email'].invalid && logForm.controls['email'].touched)
+                {
+                    @if(logForm.controls['email'].hasError('required'))
+                    {
+                        <div class="err">Email ID is Required</div>
+                    }
+                    @if(logForm.controls['email'].hasError('email'))
+                    {
+                        <div class="err">Enter valid Email</div>
+                    }
+                }
+            </div>
+            <div class="box-in">        
+                <!-- <label for="pass">Password<span class="required">*</span>: </label> -->
+                <input [type]="changetype?'password':'text'" placeholder="Enter your Password" formControlName="pass">
+                <span (click)="viewpass()"><i [ngClass]="visible?'fa-solid fa-eye':'fa fa-eye-slash'"></i></span>
+                @if(logForm.controls['pass'].invalid && logForm.controls['pass'].touched)
+                {
+                    @if(logForm.controls['pass'].hasError('required'))
+                    {
+                        <div class="err">Password is Required</div>
+                    }
+                    @if(logForm.controls['pass'].hasError('minlength'))
+                    {
+                        <div class="err">Minimum 6 character</div>
+                    }
+                    @if(logForm.controls['pass'].hasError('maxlength'))
+                    {
+                        <div class="err">Maximum 20 character</div>
+                    }
+                }
+            </div>
+            <div>
+                <input type="submit" value="Login" [disabled]="!logForm.valid">
+            </div>
+        </form>
+    </div>
+    
+    </div>
+    
+    @if(wrong)
+    {
+        <div class="errBox">
+            <p>{{errMsg}}</p>
+            <button (click)="ok()">OK</button>
+        </div>
+    }

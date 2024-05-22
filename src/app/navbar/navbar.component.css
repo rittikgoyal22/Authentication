@@ -1,0 +1,42 @@
+nav{
+    height:10vh;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    width:100vw;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: #0f0;
+    margin-right: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:900;
+    padding:5px;
+    /* background-color: white; */
+    font-size: 25px;
+}
+.logout{
+    color: #0f0;
+}
+
+a:hover{
+    background-color: #0f0;
+    color:#222;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.left{
+    position: absolute;
+    left:0;
+    margin-left: 20px;
+}
+
+.right{
+    position: absolute;
+    right:0;
+}
